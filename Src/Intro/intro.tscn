@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://b1qmxp1hk0vgb"]
 
 [ext_resource type="Script" path="res://Src/Intro/intro.gd" id="1_hitx4"]
-[ext_resource type="Texture2D" uid="uid://cq4lhke0s07mi" path="res://Res/Sprites/Intro/background.png" id="2_o3hjs"]
+[ext_resource type="Texture2D" uid="uid://b8ornb4vjejgn" path="res://Res/Sprites/Intro/intro_background.jpg" id="2_2irty"]
 [ext_resource type="Texture2D" uid="uid://c07xj1yj4xnfl" path="res://Res/Sprites/Intro/mrbeast.png" id="3_11ti6"]
 [ext_resource type="Texture2D" uid="uid://cvtcv0cxi87ka" path="res://Res/Sprites/Intro/speechbubblesimple.svg" id="4_n3rn4"]
 [ext_resource type="Texture2D" uid="uid://t1abdsqf6mko" path="res://Res/Sprites/Intro/loading.png" id="5_84414"]
@@ -305,7 +305,7 @@ script = ExtResource("1_hitx4")
 [node name="Background" type="TextureRect" parent="."]
 offset_right = 1941.0
 offset_bottom = 1092.0
-texture = ExtResource("2_o3hjs")
+texture = ExtResource("2_2irty")
 expand_mode = 1
 
 [node name="MrBeast" type="TextureRect" parent="."]
