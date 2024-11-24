@@ -101,7 +101,7 @@ func updateMoney() -> void:
 
 func updateChildrenNumber() -> void:
 	for i in range(SIZE-1, 0, -1):
-		population[i-1] = population[i-1] + population[i] * pow(baseFeastable, level[Upgrades.FEASTABLES])
+		population[i-1] = population[i-1] + population[i]
 	upgraded_kids_title = upgraded_kids_base_title + str(formation_level)
 	upgraded_kids_description = upgraded_kids_base_description + str(population[0]) + " enfants travaillant pour vous ![/b]"
 
