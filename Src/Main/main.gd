@@ -16,8 +16,8 @@ var hovering: bool = false
 
 enum Upgrades {KEYBOARD, KIDS, FEASTABLES, FORMATION, N_UPGRADES} 
 
-const baseKeyboard: int = 50_00
-const baseKids: int = 10_00
+const baseKeyboard: int = 1
+const baseKids: int = 50
 const baseFeastable: float = 1.10
 
 const SIZE = 1000
@@ -106,7 +106,7 @@ func updateChildrenNumber() -> void:
 	upgraded_kids_description = upgraded_kids_base_description + str(population[0]) + " enfants travaillant pour vous ![/b]"
 
 func updateMoneyChildren() -> void:
-	money += 100 * population[0] * pow(baseFeastable, level[Upgrades.FEASTABLES]) / CLOCK
+	money += baseKids * population[0] * pow(baseFeastable, level[Upgrades.FEASTABLES]) / CLOCK
 
 func launchParticles() -> void:
 	if particles == 0:

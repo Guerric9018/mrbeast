@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Espace"
-run/main_scene="res://Src/Main/main.tscn"
+run/main_scene="res://Src/Intro/intro.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 
 [display]
