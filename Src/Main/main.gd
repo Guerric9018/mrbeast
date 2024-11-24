@@ -1,5 +1,7 @@
 extends Node2D
 
+const CLOCK: float = 1
+
 var time_counter: float = 0
 var money_prev: int = 0
 
@@ -14,10 +16,15 @@ var hovering: bool = false
 
 enum Upgrades {KEYBOARD, KIDS, FEASTABLES, N_UPGRADES} 
 
-var linear: PackedFloat64Array = PackedFloat64Array([0.5, 0.25, 0.5])
-var multipliers: PackedFloat64Array = PackedFloat64Array([1.0, 2.0, 2.0])
+var basePerClic: int = 1.0
+
+enum Children {PRODUCTION, NUMBER}
+var children: PackedFloat64Array = PackedFloat64Array([50, 0])
+
+var linear: PackedFloat64Array = PackedFloat64Array([0.5, 0.25, 0.5, 25.0])
+var multipliers: PackedFloat64Array = PackedFloat64Array([1.0, 2.0, 2.0, 100.0])
 var level: PackedInt64Array = PackedInt64Array([0, 0, 0])
-var price: PackedFloat64Array = PackedFloat64Array([1.0, 10.0, 25.0])
+var price: PackedFloat64Array = PackedFloat64Array([1.0, 10.0, 22.0])
 var pressedUpgrades: PackedByteArray = PackedByteArray([false, false, false])
 var titles: PackedStringArray = PackedStringArray([
 	"Un nouveau clavier",
@@ -37,10 +44,11 @@ func _process(delta: float) -> void:
 		handleHover()
 	
 	time_counter += delta
-	if time_counter > 2:
-		money += 100*level[Upgrades.KIDS]*(1 + level[Upgrades.FEASTABLES])
+	if time_counter > CLOCK:
+		updateChildrenNumber()
+		updateMoneyChildren()
 		time_counter = 0
-		var rate: int = (money - money_prev)/2
+		var rate: int = (money - money_prev)/CLOCK
 		money_prev = money
 		$MoneyRateLabel.text = "%d,%02d €/s  " % [rate/100, rate % 100]
 		updateMoneyLabel()
@@ -58,8 +66,14 @@ func updateMoneyLabel() -> void:
 	$MoneyLabel.text = "%d,%02d €" % [money / 100, money % 100]
 	
 func updateMoney() -> void:
-	money += 1 + level[Upgrades.KEYBOARD]
+	money += (1 + level[Upgrades.KEYBOARD]) * basePerClic
 	updateMoneyLabel()
+
+func updateChildrenNumber() -> void:
+	children[Children.NUMBER] = level[Upgrades.KIDS]
+
+func updateMoneyChildren() -> void:
+	money += children[Children.PRODUCTION] * children[Children.NUMBER] / CLOCK 
 
 func launchParticles() -> void:
 	if particles == 0:
