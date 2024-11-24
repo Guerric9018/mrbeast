@@ -14,28 +14,42 @@ var ach_pressed: bool = false
 var quit_pressed: bool = false
 var hovering: bool = false
 
-enum Upgrades {KEYBOARD, KIDS, FEASTABLES, N_UPGRADES} 
+enum Upgrades {KEYBOARD, KIDS, FEASTABLES, FORMATION, N_UPGRADES} 
 
-var baseKeyboard: int = 5000.0
-var baseFeastable: float = 1.10
+const baseKeyboard: int = 50_00
+const baseKids: int = 10_00
+const baseFeastable: float = 1.10
 
-enum Children {PRODUCTION, NUMBER}
-var children: PackedFloat64Array = PackedFloat64Array([50, 0])
+const SIZE = 1000
 
-var linear: PackedFloat64Array = PackedFloat64Array([50.0, 2.50, 50.0, 25000.0])
-var multipliers: PackedFloat64Array = PackedFloat64Array([1.0, 1.5, 2.0, 100.0])
+var formation_level: int = 0
+var population: PackedFloat64Array = PackedFloat64Array()
+
+func _init():
+	population.resize(SIZE)
+
+var linear: PackedFloat64Array = PackedFloat64Array([50.0, 25_00.0, 50.0, 25000.0])
+var multipliers: PackedFloat64Array = PackedFloat64Array([1.0, 1.0, 1.25, 100.0])
 var level: PackedInt64Array = PackedInt64Array([0, 0, 0, 0])
-var price: PackedFloat64Array = PackedFloat64Array([100.0, 1000.0, 2200.0, 1000000.0])
+var price: PackedFloat64Array = PackedFloat64Array([1_00.0, 10_00.0, 22_00.0, 50_000_00.0])
 var pressedUpgrades: PackedByteArray = PackedByteArray([false, false, false, false])
 var titles: PackedStringArray = PackedStringArray([
 	"Un nouveau clavier",
 	"Un enfant très pratique",
-	"Du bon chocolat"
+	"Du bon chocolat",
+	"Formation cliquage",
 	])
 var descriptions: PackedStringArray = PackedStringArray([
 	"Un nouveau clavier pour votre autre main, ou pied, ou nez si vous manquez de moyens d'appuyer sur cette satanée touche... Peu importe ! Vous trouverez bien quelque-chose !\n\n[b]Augmente de 1 centime chaque appui sur la touche espace[/b]",
 	"Ne me demandez pas où vous avez acheté cet enfant, mais il fera très bien l'affaire lorsqu'il s'agit d'appuyer sur la touche d'un clavier !\n\n[b]Augmente de 1 le nombre d'enfants appuyant régulièrement sur la touche espace[/b]",
-	"Selon les mots de Mr.Beast, le meilleur chocolat au monde ! Donnera certainement un coup de boost à vos fidèles travailleurs\n\n[b]Augmente de 1 la productivité de chacun des enfants[/b]",])
+	"Selon les mots de Mr.Beast, le meilleur chocolat au monde ! Donnera certainement un coup de boost à vos fidèles travailleurs.\n\n[b]Augmente de 1 la productivité de chacun des enfants[/b]",
+	"Former des enfants à l'art d'appuyer sur la touche espace, c'est tout un travail ! Rajoutez un niveau de formation pour automatiser le processus de recrutement ! (Finançable par le CPF)\n\n[b]Vos enfants / formateurs seront recrutés automatiquement par de nouveaux formateurs[/b]",
+	])
+
+const upgraded_kids_base_title = "Formateur niveau "
+const upgraded_kids_base_description  = "Ce formateur embauchera des formateurs de niveau inférieur, ou des enfants si jamais il est de niveau 1. Deux trois tiktoks de motivation, et des promesses d'argent gratuit, et les enfants afflueront vers vous !\n\n [b]Vous avez "
+var upgraded_kids_title: String = upgraded_kids_base_title
+var upgraded_kids_description: String = upgraded_kids_base_description
 
 func _ready() -> void:
 	$MrBeastPopup.update(money)
@@ -86,10 +100,13 @@ func updateMoney() -> void:
 	updateMoneyLabel()
 
 func updateChildrenNumber() -> void:
-	children[Children.NUMBER] = level[Upgrades.KIDS]
+	for i in range(SIZE-1, 0, -1):
+		population[i-1] = population[i-1] + population[i] * pow(baseFeastable, level[Upgrades.FEASTABLES])
+	upgraded_kids_title = upgraded_kids_base_title + str(formation_level)
+	upgraded_kids_description = upgraded_kids_base_description + str(population[0]) + " enfants travaillant pour vous ![/b]"
 
 func updateMoneyChildren() -> void:
-	money += children[Children.PRODUCTION] * children[Children.NUMBER] * pow(baseFeastable, level[Upgrades.FEASTABLES]) / CLOCK
+	money += 100 * population[0] * pow(baseFeastable, level[Upgrades.FEASTABLES]) / CLOCK
 
 func launchParticles() -> void:
 	if particles == 0:
@@ -118,6 +135,8 @@ func resetButtons() -> void:
 		quit_pressed = false
 
 func buy(upgrade: Upgrades) -> void:
+	if formation_level >= SIZE:
+		return
 	if money >= price[upgrade]:
 		resetButtons()
 		pressedUpgrades[upgrade] = true
@@ -125,24 +144,47 @@ func buy(upgrade: Upgrades) -> void:
 		money -= price[upgrade]
 		money_prev -= price[upgrade]
 		updateMoneyLabel()
-		price[upgrade] += linear[upgrade]
-		price[upgrade] *= multipliers[upgrade]
+		
+		var modifier: int = 1
+		if upgrade == Upgrades.KIDS:
+			modifier += formation_level
+		
+		price[upgrade] += linear[upgrade]*modifier
+		price[upgrade] *= pow(multipliers[upgrade] + modifier - 1, modifier)
 		if upgrade == Upgrades.KEYBOARD:
 			$KeysAnimations.play("keyboard_press")
 			$Keys/Keyboard/Level.text = str(level[upgrade])
 			$Keys/Keyboard/Price.text = toSciString(price[upgrade]) + " €"
 		if upgrade == Upgrades.KIDS:
-			$KeysAnimations.play("kids_press")
+			population[formation_level] += 1
+			if formation_level == 0:
+				$KeysAnimations.play("kids_press")
+			else:
+				$KeysAnimations.play("kids_press_2")
 			$Keys/Kids/Level.text = str(level[upgrade])
 			$Keys/Kids/Price.text = toSciString(price[upgrade]) + " €"
 		if upgrade == Upgrades.FEASTABLES:
 			$KeysAnimations.play("feastables_press")
 			$Keys/Feastables/Level.text = str(level[upgrade])
 			$Keys/Feastables/Price.text = toSciString(price[upgrade]) + " €"
+		if upgrade == Upgrades.FORMATION:
+			formation_level += 1
+			price[Upgrades.KIDS] = pow(baseKids, modifier)
+			level[Upgrades.KIDS] = 0
+			$Keys/Kids/Level.text = str(level[Upgrades.KIDS])
+			$Keys/Kids/Price.text = toSciString(price[Upgrades.KIDS]) + " €"
+			$KeysAnimations.play("formation_press")
+			$Keys/Formation/Level.text = str(level[upgrade])
+			$Keys/Formation/Price.text = toSciString(price[upgrade]) + " €"
+			$KeysAnimations.queue("kids_release_2")
 
 func showHover(upgrade: Upgrades) -> void:
-	$Hover/MarginContainer/VBoxContainer/Title.text = titles[upgrade]
-	$Hover/MarginContainer/VBoxContainer/Description.text = descriptions[upgrade]
+	if upgrade == Upgrades.KIDS and formation_level > 0:
+		$Hover/MarginContainer/VBoxContainer/Title.text = upgraded_kids_title
+		$Hover/MarginContainer/VBoxContainer/Description.text = upgraded_kids_description
+	else:
+		$Hover/MarginContainer/VBoxContainer/Title.text = titles[upgrade]
+		$Hover/MarginContainer/VBoxContainer/Description.text = descriptions[upgrade]
 	hovering = true
 	handleHover()
 	$Hover.visible = true
@@ -181,6 +223,7 @@ func _on_achievements_down() -> void:
 
 
 func _on_quit_down() -> void:
+	get_tree().quit()
 	if not quit_pressed:
 		resetButtons()
 		quit_pressed = true
@@ -193,6 +236,8 @@ func _on_kids_down() -> void:
 	buy(Upgrades.KIDS)
 func _on_feastables_down() -> void:
 	buy(Upgrades.FEASTABLES)
+func _on_formation_down() -> void:
+	buy(Upgrades.FORMATION)
 
 func _on_keyboard_up() -> void:
 	if pressedUpgrades[Upgrades.KEYBOARD]:
@@ -201,11 +246,18 @@ func _on_keyboard_up() -> void:
 func _on_kids_up() -> void:
 	if pressedUpgrades[Upgrades.KIDS]:
 		pressedUpgrades[Upgrades.KIDS] = false
-		$KeysAnimations.play("kids_release")
+		if formation_level == 0:
+			$KeysAnimations.play("kids_release")
+		else:
+			$KeysAnimations.play("kids_release_2")
 func _on_feastables_up() -> void:
 	if pressedUpgrades[Upgrades.FEASTABLES]:
 		pressedUpgrades[Upgrades.FEASTABLES] = false
 		$KeysAnimations.play("feastables_release")
+func _on_formation_up() -> void:
+	if pressedUpgrades[Upgrades.FORMATION]:
+		pressedUpgrades[Upgrades.FORMATION] = false
+		$KeysAnimations.play("formation_release")
 	
 func _on_keyboard_mouse_entered() -> void:
 	showHover(Upgrades.KEYBOARD)
@@ -213,10 +265,14 @@ func _on_kids_mouse_entered() -> void:
 	showHover(Upgrades.KIDS)
 func _on_feastables_mouse_entered() -> void:
 	showHover(Upgrades.FEASTABLES)
+func _on_formation_focus_entered() -> void:
+	showHover(Upgrades.FORMATION)
 
 func _on_keyboard_mouse_exited() -> void:
 	hideHover()
 func _on_kids_mouse_exited() -> void:
 	hideHover()
 func _on_feastables_mouse_exited() -> void:
+	hideHover()
+func _on_formation_focus_exited() -> void:
 	hideHover()

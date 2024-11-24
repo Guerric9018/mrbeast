@@ -1,11 +1,10 @@
-[gd_scene load_steps=49 format=3 uid="uid://bwww6v5uegutb"]
+[gd_scene load_steps=56 format=3 uid="uid://bwww6v5uegutb"]
 
 [ext_resource type="Texture2D" uid="uid://dxmuwh7b5dg4s" path="res://Res/Sprites/Main/space_normal.svg" id="1_d3sb5"]
 [ext_resource type="Script" path="res://Src/Main/main.gd" id="1_sr1r7"]
-[ext_resource type="Texture2D" uid="uid://cmcj4vrugdyd6" path="res://Res/Sprites/Main/background.webp" id="2_eccl4"]
+[ext_resource type="Texture2D" uid="uid://dgxdajx1khf2j" path="res://Res/Sprites/Main/background.png" id="2_f2yt3"]
 [ext_resource type="Theme" uid="uid://dfck4l36vr457" path="res://Res/Styles/main.tres" id="2_vvovs"]
 [ext_resource type="Texture2D" uid="uid://dldyf81f0xj2q" path="res://Res/Sprites/Main/star.png" id="2_yh45h"]
-[ext_resource type="Texture2D" uid="uid://bcariqiirp1r1" path="res://Res/Sprites/Main/key_long.svg" id="3_3llr7"]
 [ext_resource type="Texture2D" uid="uid://c07xj1yj4xnfl" path="res://Res/Sprites/Intro/mrbeast.png" id="3_whu4o"]
 [ext_resource type="Theme" uid="uid://cog44fs6o1mni" path="res://Res/Styles/RichText/speech_bubble.tres" id="4_28s3p"]
 [ext_resource type="Texture2D" uid="uid://btsi3yxvksxc8" path="res://Res/Sprites/Main/quit_normal.svg" id="4_w8aat"]
@@ -16,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://dxvanwjgptnb4" path="res://Res/Sprites/Main/kids_normal.svg" id="7_h4m8f"]
 [ext_resource type="AudioStream" uid="uid://bgut540swqmub" path="res://Res/Audio/Main/release.mp3" id="7_xv1aq"]
 [ext_resource type="Texture2D" uid="uid://b5frgbto2l3nl" path="res://Res/Sprites/Main/feastables_normal.svg" id="8_21tnm"]
+[ext_resource type="Texture2D" uid="uid://1djejdfpkibq" path="res://Res/Sprites/Main/formation_normal.svg" id="8_o1tjk"]
 [ext_resource type="Script" path="res://Src/Main/mr_beast_popup.gd" id="9_520al"]
 [ext_resource type="Texture2D" uid="uid://butm1c3q3aa6m" path="res://Res/Sprites/Main/achievements_pressed.svg" id="12_p8x0q"]
 [ext_resource type="AudioStream" uid="uid://c3q2new1vdfk6" path="res://Res/Audio/Main/pluh.mp3" id="12_x4pwk"]
@@ -24,6 +24,9 @@
 [ext_resource type="Texture2D" uid="uid://qwfunnhpc727" path="res://Res/Sprites/Main/kids_pressed.svg" id="19_qo16i"]
 [ext_resource type="Theme" uid="uid://dgu0xxjgpqvsr" path="res://Res/Styles/HoverMenu/hover.tres" id="20_p2ad3"]
 [ext_resource type="Texture2D" uid="uid://clqh71yf5rtoa" path="res://Res/Sprites/Main/feastables_pressed.png" id="21_4wh3p"]
+[ext_resource type="Texture2D" uid="uid://fnm3x0lx4bp6" path="res://Res/Sprites/Main/formation_pressed.svg" id="22_ditmn"]
+[ext_resource type="Texture2D" uid="uid://cn0137m3hugrh" path="res://Res/Sprites/Main/formator_pressed.svg" id="23_coi3c"]
+[ext_resource type="Texture2D" uid="uid://bqykq7a8rlntm" path="res://Res/Sprites/Main/formator_normal.svg" id="24_48ebm"]
 
 [sub_resource type="Curve" id="Curve_5e1v3"]
 _data = [Vector2(0.0243161, 0.996634), 0.0, 0.0, 0, 0, Vector2(0.966565, 0.0743139), -0.0527364, 0.0, 0, 0]
@@ -241,7 +244,7 @@ tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-58, 781)]
+"values": [Vector2(30, 816)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -289,7 +292,7 @@ tracks/10/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1326, 781)]
+"values": [Vector2(1330, 816)]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
@@ -313,7 +316,7 @@ tracks/12/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(52, 579)]
+"values": [Vector2(0, 579)]
 }
 tracks/13/type = "value"
 tracks/13/imported = false
@@ -409,7 +412,7 @@ tracks/20/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(552, 579)]
+"values": [Vector2(480, 579)]
 }
 tracks/21/type = "value"
 tracks/21/imported = false
@@ -469,7 +472,7 @@ tracks/25/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1052, 579)]
+"values": [Vector2(960, 579)]
 }
 tracks/26/type = "value"
 tracks/26/imported = false
@@ -478,6 +481,66 @@ tracks/26/path = NodePath("Keys/Feastables/Level:position")
 tracks/26/interp = 1
 tracks/26/loop_wrap = true
 tracks/26/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(225, 66)]
+}
+tracks/27/type = "value"
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/path = NodePath("Keys/Formation/Price:visible")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/28/type = "value"
+tracks/28/imported = false
+tracks/28/enabled = true
+tracks/28/path = NodePath("Keys/Formation:texture_normal")
+tracks/28/interp = 1
+tracks/28/loop_wrap = true
+tracks/28/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_o1tjk")]
+}
+tracks/29/type = "value"
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/path = NodePath("Keys/Formation:position")
+tracks/29/interp = 1
+tracks/29/loop_wrap = true
+tracks/29/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1440, 579)]
+}
+tracks/30/type = "value"
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/path = NodePath("Keys/Formation:scale")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/31/type = "value"
+tracks/31/imported = false
+tracks/31/enabled = true
+tracks/31/path = NodePath("Keys/Formation/Level:position")
+tracks/31/interp = 1
+tracks/31/loop_wrap = true
+tracks/31/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -521,7 +584,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-58, 832)]
+"values": [Vector2(30, 865)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -561,7 +624,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-58, 781)]
+"values": [Vector2(30, 816)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -637,7 +700,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1052, 595)]
+"values": [Vector2(960, 595)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -725,7 +788,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1052, 579)]
+"values": [Vector2(960, 579)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -777,7 +840,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(52, 595)]
+"values": [Vector2(0, 595)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -841,7 +904,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(52, 579)]
+"values": [Vector2(0, 579)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -902,7 +965,7 @@ tracks/0/path = NodePath("Keys/Kids/Price:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.0333333),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
@@ -941,7 +1004,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(552, 595)]
+"values": [Vector2(480, 595)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -990,7 +1053,7 @@ tracks/1/path = NodePath("Keys/Kids/Price:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.0333333),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -1029,7 +1092,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(552, 579)]
+"values": [Vector2(480, 579)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -1145,7 +1208,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1326, 832)]
+"values": [Vector2(1330, 865)]
 }
 
 [sub_resource type="Animation" id="Animation_rajis"]
@@ -1185,7 +1248,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1326, 781)]
+"values": [Vector2(1330, 816)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -1252,6 +1315,310 @@ tracks/3/keys = {
 "values": [ExtResource("1_d3sb5")]
 }
 
+[sub_resource type="Animation" id="Animation_4v38x"]
+resource_name = "formation_release"
+length = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("KeyRelease:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Keys/Formation/Price:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Keys/Formation/Level:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(225, 66)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Keys/Formation:texture_normal")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_o1tjk")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Keys/Formation:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1440, 579)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Keys/Formation:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_mfch4"]
+resource_name = "formation_press"
+length = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Keys/Formation/Price:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Keys/Formation/Level:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(225, 95)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Keys/Formation:texture_normal")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("22_ditmn")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Keys/Formation:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1440, 595)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Keys/Formation:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.98, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("KeyPress:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_qpuc1"]
+resource_name = "kids_press_2"
+length = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Keys/Kids/Price:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Keys/Kids/Level:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(225, 95)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Keys/Kids:texture_normal")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("23_coi3c")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Keys/Kids:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(480, 595)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Keys/Kids:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.98, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("KeyPress:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_0qatc"]
+resource_name = "kids_release_2"
+length = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("KeyRelease:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Keys/Kids/Price:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Keys/Kids/Level:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(225, 66)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Keys/Kids:texture_normal")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("24_48ebm")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Keys/Kids:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(480, 579)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Keys/Kids:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rfe3e"]
 _data = {
 "RESET": SubResource("Animation_cdvav"),
@@ -1259,10 +1626,14 @@ _data = {
 "achievements_release": SubResource("Animation_wmyhy"),
 "feastables_press": SubResource("Animation_dnovk"),
 "feastables_release": SubResource("Animation_1j8cw"),
+"formation_press": SubResource("Animation_mfch4"),
+"formation_release": SubResource("Animation_4v38x"),
 "keyboard_press": SubResource("Animation_73tas"),
 "keyboard_release": SubResource("Animation_0e6yf"),
 "kids_press": SubResource("Animation_r7gn8"),
+"kids_press_2": SubResource("Animation_qpuc1"),
 "kids_release": SubResource("Animation_rowy8"),
+"kids_release_2": SubResource("Animation_0qatc"),
 "press": SubResource("Animation_npm3q"),
 "quit_press": SubResource("Animation_18ksn"),
 "quit_release": SubResource("Animation_rajis"),
@@ -1274,11 +1645,11 @@ script = ExtResource("1_sr1r7")
 metadata/_edit_horizontal_guides_ = [-502.0]
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_left = -877.0
-offset_top = -1056.0
-offset_right = 1958.0
-offset_bottom = 1038.0
-texture = ExtResource("2_eccl4")
+offset_left = -43.0
+offset_top = -51.0
+offset_right = 1944.0
+offset_bottom = 1116.0
+texture = ExtResource("2_f2yt3")
 
 [node name="Particles" type="Node2D" parent="."]
 
@@ -1334,18 +1705,9 @@ explosiveness = 1.0
 
 [node name="Keys" type="Node2D" parent="."]
 
-[node name="TextureRect4" type="TextureRect" parent="Keys"]
-offset_left = 1562.0
-offset_top = 577.0
-offset_right = 2046.0
-offset_bottom = 780.0
-texture = ExtResource("3_3llr7")
-expand_mode = 1
-
 [node name="Keyboard" type="TextureButton" parent="Keys"]
-offset_left = 52.0
 offset_top = 579.0
-offset_right = 536.0
+offset_right = 484.0
 offset_bottom = 782.0
 focus_mode = 0
 texture_normal = ExtResource("5_0ntaw")
@@ -1376,9 +1738,9 @@ text = "1 €"
 horizontal_alignment = 1
 
 [node name="Kids" type="TextureButton" parent="Keys"]
-offset_left = 552.0
+offset_left = 480.0
 offset_top = 579.0
-offset_right = 1036.0
+offset_right = 964.0
 offset_bottom = 782.0
 focus_mode = 0
 texture_normal = ExtResource("7_h4m8f")
@@ -1409,9 +1771,9 @@ text = "10 €"
 horizontal_alignment = 1
 
 [node name="Feastables" type="TextureButton" parent="Keys"]
-offset_left = 1052.0
+offset_left = 960.0
 offset_top = 579.0
-offset_right = 1536.0
+offset_right = 1444.0
 offset_bottom = 782.0
 focus_mode = 0
 texture_normal = ExtResource("8_21tnm")
@@ -1441,20 +1803,53 @@ theme_override_font_sizes/font_size = 45
 text = "25 €"
 horizontal_alignment = 1
 
+[node name="Formation" type="TextureButton" parent="Keys"]
+offset_left = 1440.0
+offset_top = 579.0
+offset_right = 1924.0
+offset_bottom = 782.0
+focus_mode = 0
+texture_normal = ExtResource("8_o1tjk")
+stretch_mode = 5
+
+[node name="Level" type="Label" parent="Keys/Formation"]
+layout_mode = 0
+offset_left = 225.0
+offset_top = 66.0
+offset_right = 418.0
+offset_bottom = 133.0
+theme = ExtResource("2_vvovs")
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_font_sizes/font_size = 57
+text = "0"
+horizontal_alignment = 2
+
+[node name="Price" type="Label" parent="Keys/Formation"]
+layout_mode = 0
+offset_left = 154.0
+offset_top = 135.0
+offset_right = 347.0
+offset_bottom = 202.0
+theme = ExtResource("2_vvovs")
+theme_override_font_sizes/font_size = 45
+text = "50000 €"
+horizontal_alignment = 1
+
 [node name="Quit" type="TextureButton" parent="Keys"]
-offset_left = 1326.0
-offset_top = 781.0
-offset_right = 1984.0
-offset_bottom = 1016.0
+offset_left = 1330.0
+offset_top = 816.0
+offset_right = 1892.0
+offset_bottom = 1051.0
 focus_mode = 0
 texture_normal = ExtResource("4_w8aat")
 stretch_mode = 4
 
 [node name="Achievements" type="TextureButton" parent="Keys"]
-offset_left = -58.0
-offset_top = 781.0
-offset_right = 620.0
-offset_bottom = 1032.0
+offset_left = 30.0
+offset_top = 816.0
+offset_right = 607.0
+offset_bottom = 1067.0
 focus_mode = 0
 texture_normal = ExtResource("6_aa4ro")
 stretch_mode = 4
@@ -1492,13 +1887,13 @@ horizontal_alignment = 1
 [node name="MrBeastPopup" type="VBoxContainer" parent="."]
 offset_left = -500.0
 offset_right = -106.0
-offset_bottom = 440.0
+offset_bottom = 534.0
 script = ExtResource("9_520al")
 
 [node name="MrBeastPanel" type="Panel" parent="MrBeastPopup"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 1.5
+size_flags_stretch_ratio = 1.1
 theme = ExtResource("2_vvovs")
 
 [node name="MrBeast" type="TextureRect" parent="MrBeastPopup/MrBeastPanel"]
@@ -1596,6 +1991,10 @@ example"
 [connection signal="button_up" from="Keys/Feastables" to="." method="_on_feastables_up"]
 [connection signal="mouse_entered" from="Keys/Feastables" to="." method="_on_feastables_mouse_entered"]
 [connection signal="mouse_exited" from="Keys/Feastables" to="." method="_on_feastables_mouse_exited"]
+[connection signal="button_down" from="Keys/Formation" to="." method="_on_formation_down"]
+[connection signal="button_up" from="Keys/Formation" to="." method="_on_formation_up"]
+[connection signal="focus_entered" from="Keys/Formation" to="." method="_on_formation_focus_entered"]
+[connection signal="focus_exited" from="Keys/Formation" to="." method="_on_formation_focus_exited"]
 [connection signal="button_down" from="Keys/Quit" to="." method="_on_quit_down"]
 [connection signal="button_down" from="Keys/Achievements" to="." method="_on_achievements_down"]
 [connection signal="button_down" from="Button" to="." method="_on_space_down"]

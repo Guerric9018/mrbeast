@@ -33,7 +33,7 @@ const messages: Dictionary = {
 	},
 	7: {
 		"amount": 10_000_00,
-		"message": "Vous avez entendu parlé de ces histoire de traffic d'enfants ? Effrayant..."
+		"message": "Vous avez entendu parler de ces histoire de traffic d'enfants ? Effrayant..."
 	},
 	8: {
 		"amount": 123_516_00,
