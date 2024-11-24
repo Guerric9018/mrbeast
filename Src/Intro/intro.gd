@@ -3,28 +3,28 @@ extends Node2D
 var listening: bool = false
 var advancement: int = 0
 var time: float = 0
-var waiting: PackedFloat64Array = [1.5, 1.5, 2., 2., 2.]
+var waiting: PackedFloat64Array = [1., 1., 1.5, 2., 2.]
 
 var story: Dictionary = {
 	0: {
 		"name": "Mr.Beast",
-		"content": "Bonjour à tous, j'espère que vous allez bien !"
+		"content": "Bonjour à tous, j'espère que vous allez bien !!"
 	},
 	1: {
 		"name": "Mr.Beast",
-		"content": "On se retrouve aujourd'hui pour une vidéo assez spéciale..."
+		"content": "On se retrouve aujourd'hui pour une vidéo assez spéciale...."
 	},
 	2: {
 		"name": "Mr.Beast",
-		"content": "Je veux que vous gagniez gros alors je lance un nouveau concept encore jamais vu !"
+		"content": "Je veux que vous gagniez gros alors je lance un [wave amp=50.0 freq=5.0 connected=1]nouveau concept[/wave] encore jamais vu !!"
 	},
 	3: {
 		"name": "Mr.Beast",
-		"content": "À chaque fois que vous appuyez sur la barre espace, je vous donne 1 centime !"
+		"content": "À chaque fois que vous appuyez sur la [shake rate=20.0 level=5 connected=1]barre espace[/shake], je vous donne [tornado radius=10.0 freq=1.0 connected=1]1 centime[/tornado] !!"
 	},
 	4: {
 		"name": "Mr.Beast",
-		"content": "Bonne chance !"
+		"content": "Bonne chance !!"
 	},
 	"length": 5
 }
@@ -40,8 +40,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if listening && advancement <= story["length"]:
 		time += delta
-		print(advancement)
-		print(waiting[advancement - 1])
 		if time > waiting[advancement - 1]:
 			time = 0
 			if advancement >= story["length"]:

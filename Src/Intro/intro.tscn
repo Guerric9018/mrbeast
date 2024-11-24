@@ -353,12 +353,14 @@ layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.32
 theme = ExtResource("6_m0f3h")
+bbcode_enabled = true
 text = "Mr. Beast"
 
 [node name="Content" type="RichTextLabel" parent="Bubble/Text"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("7_5kl7a")
+bbcode_enabled = true
 text = "Bonjour à tous, c'est Mr. Beast!"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
