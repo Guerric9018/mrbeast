@@ -3,9 +3,9 @@ extends Node2D
 const CLOCK: float = 1
 
 var time_counter: float = 0
-var money_prev: int = 0
+var money_prev: float = 0
 
-var money: int = 0
+var money: float = 0
 
 var particles: int = 0
 
@@ -16,17 +16,17 @@ var hovering: bool = false
 
 enum Upgrades {KEYBOARD, KIDS, FEASTABLES, N_UPGRADES} 
 
-var baseKeyboard: int = 1.0
+var baseKeyboard: int = 5000.0
 var baseFeastable: float = 1.10
 
 enum Children {PRODUCTION, NUMBER}
 var children: PackedFloat64Array = PackedFloat64Array([50, 0])
 
-var linear: PackedFloat64Array = PackedFloat64Array([0.5, 0.25, 0.5, 25.0])
-var multipliers: PackedFloat64Array = PackedFloat64Array([1.0, 2.0, 2.0, 100.0])
-var level: PackedInt64Array = PackedInt64Array([0, 0, 0])
-var price: PackedFloat64Array = PackedFloat64Array([1.0, 10.0, 22.0])
-var pressedUpgrades: PackedByteArray = PackedByteArray([false, false, false])
+var linear: PackedFloat64Array = PackedFloat64Array([50.0, 2.50, 50.0, 25000.0])
+var multipliers: PackedFloat64Array = PackedFloat64Array([1.0, 1.5, 2.0, 100.0])
+var level: PackedInt64Array = PackedInt64Array([0, 0, 0, 0])
+var price: PackedFloat64Array = PackedFloat64Array([100.0, 1000.0, 2200.0, 1000000.0])
+var pressedUpgrades: PackedByteArray = PackedByteArray([false, false, false, false])
 var titles: PackedStringArray = PackedStringArray([
 	"Un nouveau clavier",
 	"Un enfant très pratique",
@@ -49,12 +49,26 @@ func _process(delta: float) -> void:
 		updateChildrenNumber()
 		updateMoneyChildren()
 		time_counter = 0
-		var rate: int = (money - money_prev)/CLOCK
+		var rate: float = (money - money_prev)/CLOCK
 		money_prev = money
-		$MoneyRateLabel.text = "%d,%02d €/s  " % [rate/100, rate % 100]
+		$MoneyRateLabel.text = toSciString(rate) + " €/s"
 		updateMoneyLabel()
 		$MrBeastPopup.update(money)
-	
+
+func toSciString(number: float) -> String:
+	var base: int
+	var dec: int
+	var exp: int
+	if (number < 100000000):
+		base = int(number / 100.)
+		dec = int(number) % 100
+		return "%d,%02d" % [base, dec]
+	else:
+		exp = log(number / 100.) / log(10)
+		base = int(number / pow(10, exp + 2))
+		dec = int(number / pow(10, exp)) - base * 100
+		return "%d,%02d e%d" % [base, dec, exp]
+
 func handleHover() -> void:
 	$Hover.size.y = 130 + $Hover/MarginContainer/VBoxContainer/Description.get_content_height()
 	var mousePosition: Vector2 = get_viewport().get_mouse_position()
@@ -64,7 +78,8 @@ func handleHover() -> void:
 		$Hover.position = mousePosition + Vector2(-$Hover.size.x - 50.0, -50.0)
 
 func updateMoneyLabel() -> void:
-	$MoneyLabel.text = "%d,%02d €" % [money / 100, money % 100]
+	$MoneyLabel.text = toSciString(money) + " €"
+	# $MoneyLabel.text = "%d,%02d €" % [int(money/100), int(money) % 100]
 	
 func updateMoney() -> void:
 	money += (1 + level[Upgrades.KEYBOARD]) * baseKeyboard
@@ -103,27 +118,27 @@ func resetButtons() -> void:
 		quit_pressed = false
 
 func buy(upgrade: Upgrades) -> void:
-	if money >= 100*price[upgrade]:
+	if money >= price[upgrade]:
 		resetButtons()
 		pressedUpgrades[upgrade] = true
 		level[upgrade] += 1
-		money -= 100*price[upgrade]
-		money_prev -= 100*price[upgrade]
+		money -= price[upgrade]
+		money_prev -= price[upgrade]
 		updateMoneyLabel()
 		price[upgrade] += linear[upgrade]
 		price[upgrade] *= multipliers[upgrade]
 		if upgrade == Upgrades.KEYBOARD:
 			$KeysAnimations.play("keyboard_press")
 			$Keys/Keyboard/Level.text = str(level[upgrade])
-			$Keys/Keyboard/Price.text = "%d,%02d €" % [int(price[upgrade]), int(100*price[upgrade]) % 100]
+			$Keys/Keyboard/Price.text = toSciString(price[upgrade]) + " €"
 		if upgrade == Upgrades.KIDS:
 			$KeysAnimations.play("kids_press")
 			$Keys/Kids/Level.text = str(level[upgrade])
-			$Keys/Kids/Price.text = "%d,%02d €" % [int(price[upgrade]), int(100*price[upgrade]) % 100]
+			$Keys/Kids/Price.text = toSciString(price[upgrade]) + " €"
 		if upgrade == Upgrades.FEASTABLES:
 			$KeysAnimations.play("feastables_press")
 			$Keys/Feastables/Level.text = str(level[upgrade])
-			$Keys/Feastables/Price.text = "%d,%02d €" % [int(price[upgrade]), int(100*price[upgrade]) % 100]
+			$Keys/Feastables/Price.text = toSciString(price[upgrade]) + " €"
 
 func showHover(upgrade: Upgrades) -> void:
 	$Hover/MarginContainer/VBoxContainer/Title.text = titles[upgrade]
