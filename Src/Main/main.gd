@@ -16,7 +16,8 @@ var hovering: bool = false
 
 enum Upgrades {KEYBOARD, KIDS, FEASTABLES, N_UPGRADES} 
 
-var basePerClic: int = 1.0
+var baseKeyboard: int = 1.0
+var baseFeastable: float = 1.10
 
 enum Children {PRODUCTION, NUMBER}
 var children: PackedFloat64Array = PackedFloat64Array([50, 0])
@@ -66,14 +67,14 @@ func updateMoneyLabel() -> void:
 	$MoneyLabel.text = "%d,%02d €" % [money / 100, money % 100]
 	
 func updateMoney() -> void:
-	money += (1 + level[Upgrades.KEYBOARD]) * basePerClic
+	money += (1 + level[Upgrades.KEYBOARD]) * baseKeyboard
 	updateMoneyLabel()
 
 func updateChildrenNumber() -> void:
 	children[Children.NUMBER] = level[Upgrades.KIDS]
 
 func updateMoneyChildren() -> void:
-	money += children[Children.PRODUCTION] * children[Children.NUMBER] / CLOCK 
+	money += children[Children.PRODUCTION] * children[Children.NUMBER] * pow(baseFeastable, level[Upgrades.FEASTABLES]) / CLOCK
 
 func launchParticles() -> void:
 	if particles == 0:
