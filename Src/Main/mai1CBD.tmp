@@ -1,0 +1,339 @@
+[gd_scene load_steps=18 format=3 uid="uid://bwww6v5uegutb"]
+
+[ext_resource type="Texture2D" uid="uid://dxmuwh7b5dg4s" path="res://Res/Sprites/Main/space_normal.svg" id="1_d3sb5"]
+[ext_resource type="Script" path="res://Src/Main/main.gd" id="1_sr1r7"]
+[ext_resource type="Theme" uid="uid://dfck4l36vr457" path="res://main.tres" id="2_vvovs"]
+[ext_resource type="Texture2D" uid="uid://dldyf81f0xj2q" path="res://Res/Sprites/Main/star.png" id="2_yh45h"]
+[ext_resource type="Texture2D" uid="uid://c07xj1yj4xnfl" path="res://Res/Sprites/Intro/mrbeast.png" id="3_whu4o"]
+[ext_resource type="Theme" uid="uid://cog44fs6o1mni" path="res://Res/Styles/RichText/speech_bubble.tres" id="4_28s3p"]
+[ext_resource type="Texture2D" uid="uid://cr7plvhmnhwq4" path="res://Res/Sprites/Main/space_pressed.svg" id="5_n3cx5"]
+[ext_resource type="AudioStream" uid="uid://cxbi6war4tnye" path="res://Res/Audio/Main/press.mp3" id="6_dqhm2"]
+[ext_resource type="AudioStream" uid="uid://bgut540swqmub" path="res://Res/Audio/Main/release.mp3" id="7_xv1aq"]
+
+[sub_resource type="Curve" id="Curve_5e1v3"]
+_data = [Vector2(0.0243161, 0.996634), 0.0, 0.0, 0, 0, Vector2(0.966565, 0.0743139), -0.0527364, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_jdtiu"]
+curve = SubResource("Curve_5e1v3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_feby8"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(300, 50, 1)
+angle_min = -360.0
+angle_max = 360.0
+inherit_velocity_ratio = 10.0
+spread = 180.0
+initial_velocity_min = 200.0
+initial_velocity_max = 400.0
+gravity = Vector3(0, 98, 0)
+scale_min = 0.3
+scale_max = 1.5
+alpha_curve = SubResource("CurveTexture_jdtiu")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3uqp3"]
+bg_color = Color(0.966939, 0.966939, 0.966939, 1)
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color(0.460347, 0.460347, 0.460347, 1)
+border_blend = true
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="Animation" id="Animation_cdvav"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_d3sb5")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Button:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(613, 779)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("KeyPress:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("KeyRelease:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Button:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8jdlm"]
+resource_name = "release"
+length = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_d3sb5")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Button:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(613, 779)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("KeyRelease:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Button:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_npm3q"]
+resource_name = "press"
+length = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_n3cx5")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Button:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(613, 830)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("KeyPress:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Button:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.98, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rfe3e"]
+_data = {
+"RESET": SubResource("Animation_cdvav"),
+"press": SubResource("Animation_npm3q"),
+"release": SubResource("Animation_8jdlm")
+}
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_sr1r7")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(965, 915)
+emitting = false
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_feby8")
+texture = ExtResource("2_yh45h")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+position = Vector2(965, 915)
+emitting = false
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_feby8")
+texture = ExtResource("2_yh45h")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="."]
+position = Vector2(965, 915)
+emitting = false
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_feby8")
+texture = ExtResource("2_yh45h")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="."]
+position = Vector2(965, 915)
+emitting = false
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_feby8")
+texture = ExtResource("2_yh45h")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+
+[node name="GPUParticles2D5" type="GPUParticles2D" parent="."]
+position = Vector2(965, 915)
+emitting = false
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_feby8")
+texture = ExtResource("2_yh45h")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+
+[node name="Button" type="TextureRect" parent="."]
+offset_left = 613.0
+offset_top = 779.0
+offset_right = 1309.0
+offset_bottom = 1014.0
+texture = ExtResource("1_d3sb5")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="MoneyLabel" type="Label" parent="."]
+offset_left = 58.0
+offset_top = 98.0
+offset_right = 1879.0
+offset_bottom = 275.0
+theme = ExtResource("2_vvovs")
+text = "0 €"
+horizontal_alignment = 1
+
+[node name="MrBeastPanel" type="Panel" parent="."]
+offset_left = 2.0
+offset_top = 727.0
+offset_right = 514.0
+offset_bottom = 1078.0
+theme = ExtResource("2_vvovs")
+
+[node name="MrBeast" type="TextureRect" parent="MrBeastPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_whu4o")
+expand_mode = 1
+
+[node name="MessagePanel" type="Panel" parent="."]
+offset_left = 21.0
+offset_top = 471.0
+offset_right = 511.0
+offset_bottom = 698.0
+theme = ExtResource("2_vvovs")
+theme_override_styles/panel = SubResource("StyleBoxFlat_3uqp3")
+
+[node name="Message" type="RichTextLabel" parent="MessagePanel"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 21.0
+offset_right = 456.0
+offset_bottom = 204.0
+theme = ExtResource("4_28s3p")
+theme_override_font_sizes/normal_font_size = 40
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rfe3e")
+}
+autoplay = "RESET"
+
+[node name="KeyPress" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_dqhm2")
+
+[node name="KeyRelease" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_xv1aq")
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]

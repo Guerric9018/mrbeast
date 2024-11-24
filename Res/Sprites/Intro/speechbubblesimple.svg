@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="200mm"
+   height="200mm"
+   viewBox="0 0 200 200"
+   version="1.1"
+   id="svg1"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1">
+    <linearGradient
+       id="linearGradient4">
+      <stop
+         style="stop-color:#ebebff;stop-opacity:1;"
+         offset="0"
+         id="stop4" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="1"
+         id="stop5" />
+    </linearGradient>
+    <linearGradient
+       xlink:href="#linearGradient4"
+       id="linearGradient5"
+       x1="92.523453"
+       y1="70.596695"
+       x2="93.567078"
+       y2="128.65225"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <g
+     id="layer1">
+    <rect
+       style="fill:#b7c4eb;fill-opacity:0.724044;stroke:none;stroke-width:4.065;stroke-linecap:butt;stroke-miterlimit:15.3;stroke-dasharray:none;stroke-opacity:1"
+       id="rect5"
+       width="190.99741"
+       height="98.955666"
+       x="7.3460531"
+       y="36.298149"
+       ry="24.198765" />
+    <path
+       style="fill:#b7c4eb;fill-opacity:0.724044;stroke:none;stroke-width:2.80446;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:0.3;stroke-dasharray:none;stroke-opacity:1"
+       d="m 57.769052,135.30044 c 0,0 -26.705875,29.34858 -43.551376,38.65081 -30.219612,16.68752 69.535203,-17.61076 80.765352,-38.87213"
+       id="path5" />
+    <rect
+       style="fill:url(#linearGradient5);fill-opacity:1;stroke:#330099;stroke-width:4.065;stroke-linecap:butt;stroke-miterlimit:15.3;stroke-dasharray:none;stroke-opacity:1"
+       id="rect4"
+       width="185.81195"
+       height="96.795059"
+       x="7.7781744"
+       y="31.97694"
+       ry="24.198765" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#330099;stroke-width:2.565;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:0.3;stroke-dasharray:none;stroke-opacity:1"
+       d="m 63.617248,126.08098 c 0,0 -31.066315,36.00696 -46.955203,44.25696 -28.503517,14.79991 70.188281,-22.9908 81.18828,-45.29636"
+       id="path4" />
+  </g>
+</svg>

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b4xpheh4l0q71"
+path="res://.godot/imported/Mr Beast phonk  SXCREDMANE Phonk Remix TIKTOK SONG.mp3-139a1576ef23bd670d095b622fabb3a4.mp3str"
+
+[deps]
+
+source_file="res://Res/Audio/Intro/Mr Beast phonk  SXCREDMANE Phonk Remix TIKTOK SONG.mp3"
+dest_files=["res://.godot/imported/Mr Beast phonk  SXCREDMANE Phonk Remix TIKTOK SONG.mp3-139a1576ef23bd670d095b622fabb3a4.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
