@@ -54,7 +54,7 @@ func close() -> void:
 	$AnimationPlayer.play("fade_out")
 	while $AnimationPlayer.is_playing():
 		await get_tree().create_timer(0.1).timeout
-	get_tree().change_scene_to_file("res://Src/Main/main.tscn"   )
+	get_tree().change_scene_to_file("res://Src/Main/main.tscn")
 
 func displayText(characterName: String, content: String) -> void:
 	if advancement >= story["length"]:

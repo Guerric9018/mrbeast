@@ -265,7 +265,7 @@ func _on_kids_mouse_entered() -> void:
 	showHover(Upgrades.KIDS)
 func _on_feastables_mouse_entered() -> void:
 	showHover(Upgrades.FEASTABLES)
-func _on_formation_focus_entered() -> void:
+func _on_formation_mouse_entered() -> void:
 	showHover(Upgrades.FORMATION)
 
 func _on_keyboard_mouse_exited() -> void:
@@ -274,5 +274,6 @@ func _on_kids_mouse_exited() -> void:
 	hideHover()
 func _on_feastables_mouse_exited() -> void:
 	hideHover()
-func _on_formation_focus_exited() -> void:
+func _on_formation_mouse_exited() -> void:
 	hideHover()
+	
