@@ -18,7 +18,7 @@ var hovering: bool = false
 
 enum Upgrades {KEYBOARD, KIDS, FEASTABLES, FORMATION, N_UPGRADES} 
 
-const baseKeyboard: int = 1
+const baseKeyboard: int = 10000000
 const baseKids: int = 50
 const baseFeastable: float = 1.10
 
@@ -52,6 +52,7 @@ var descriptions: PackedStringArray = PackedStringArray([
 
 const upgraded_kids_base_title = "Formateur niveau "
 const upgraded_kids_base_description  = "Ce formateur embauchera des formateurs de niveau inférieur, ou des enfants si jamais il est de niveau 1. Deux trois tiktoks de motivation, et des promesses d'argent gratuit, et les enfants afflueront vers vous !\n\n [b]Vous avez "
+var updateDescription: bool = false
 var upgraded_kids_title: String = upgraded_kids_base_title
 var upgraded_kids_description: String = upgraded_kids_base_description
 
@@ -61,6 +62,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if hovering:
 		handleHover()
+	if updateDescription:
+		$Hover/MarginContainer/VBoxContainer/Description.text = upgraded_kids_description
 	
 	time_counter += delta
 	if time_counter > CLOCK:
@@ -90,6 +93,19 @@ func toSciString(number: float) -> String:
 		dec = int(number / pow(10, exp)) - base * 100
 		return "%d,%02d e%d" % [base, dec, exp]
 
+func childrenToString(number: float) -> String:
+	var base: int
+	var dec: int
+	var exp: int
+	if (number < 1000000):
+		base = number
+		return "%d" % [base]
+	else:
+		exp = log(number / 100.) / log(10)
+		base = int(number / pow(10, exp))
+		dec = int(number / pow(10, exp - 2)) - base * 100
+		return "%d,%02d e%d" % [base, dec, exp]
+
 func handleHover() -> void:
 	$Hover.size.y = 130 + $Hover/MarginContainer/VBoxContainer/Description.get_content_height()
 	var mousePosition: Vector2 = get_viewport().get_mouse_position()
@@ -100,7 +116,6 @@ func handleHover() -> void:
 
 func updateMoneyLabel() -> void:
 	$MoneyLabel.text = toSciString(money) + " €"
-	# $MoneyLabel.text = "%d,%02d €" % [int(money/100), int(money) % 100]
 	
 func updateMoney() -> void:
 	money += (1 + level[Upgrades.KEYBOARD]) * baseKeyboard * pow(achievement_count + 1, pow(achievement_count + 1, achievement_count))
@@ -110,7 +125,7 @@ func updateChildrenNumber() -> void:
 	for i in range(SIZE-1, 0, -1):
 		population[i-1] = population[i-1] + population[i]
 	upgraded_kids_title = upgraded_kids_base_title + str(formation_level)
-	upgraded_kids_description = upgraded_kids_base_description + str(population[0]) + " enfants travaillant pour vous ![/b]"
+	upgraded_kids_description = upgraded_kids_base_description + childrenToString(population[0]) + " enfants travaillant pour vous ![/b]"
 
 func updateMoneyChildren() -> void:
 	money += baseKids * population[0] * pow(baseFeastable, level[Upgrades.FEASTABLES]) / CLOCK
@@ -187,6 +202,7 @@ func showHover(upgrade: Upgrades) -> void:
 	if upgrade == Upgrades.KIDS and formation_level > 0:
 		$Hover/MarginContainer/VBoxContainer/Title.text = upgraded_kids_title
 		$Hover/MarginContainer/VBoxContainer/Description.text = upgraded_kids_description
+		updateDescription = true
 	else:
 		$Hover/MarginContainer/VBoxContainer/Title.text = titles[upgrade]
 		$Hover/MarginContainer/VBoxContainer/Description.text = descriptions[upgrade]
@@ -197,6 +213,7 @@ func showHover(upgrade: Upgrades) -> void:
 func hideHover() -> void:
 	$Hover.visible = false
 	hovering = false
+	updateDescription = false
 
 func _input(event) -> void:
 	if event is InputEventKey and event.keycode == KEY_SPACE and not $Achievements.opened:
