@@ -1,0 +1,23 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://p6xvmdlnv2ie"]
+
+[ext_resource type="FontFile" uid="uid://uf3dre3k368u" path="res://Res/Fonts/Roboto/Roboto-Bold.ttf" id="1_prrds"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nps0j"]
+bg_color = Color(0.561654, 0.532635, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[resource]
+Label/font_sizes/font_size = 25
+Label/fonts/font = ExtResource("1_prrds")
+MarginContainer/constants/margin_bottom = 20
+MarginContainer/constants/margin_left = 20
+MarginContainer/constants/margin_right = 20
+MarginContainer/constants/margin_top = 20
+Panel/styles/panel = SubResource("StyleBoxFlat_nps0j")

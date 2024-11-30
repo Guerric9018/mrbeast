@@ -7,6 +7,8 @@ var money_prev: float = 0
 
 var money: float = 0
 
+var cps: int = 0
+
 var particles: int = 0
 
 var pressed: bool = false  
@@ -27,6 +29,8 @@ var population: PackedFloat64Array = PackedFloat64Array()
 
 func _init():
 	population.resize(SIZE)
+
+var achievement_count: int = 0
 
 var linear: PackedFloat64Array = PackedFloat64Array([50.0, 25_00.0, 50.0, 25000.0])
 var multipliers: PackedFloat64Array = PackedFloat64Array([1.0, 1.0, 1.25, 100.0])
@@ -68,7 +72,10 @@ func _process(delta: float) -> void:
 		$MoneyRateLabel.text = toSciString(rate) + " €/s"
 		updateMoneyLabel()
 		$MrBeastPopup.update(money)
-
+		$Achievements.update(money, cps/CLOCK, population[0], level[Upgrades.FEASTABLES], level[Upgrades.FORMATION])
+		cps = 0
+		achievement_count = $Achievements.count
+		
 func toSciString(number: float) -> String:
 	var base: int
 	var dec: int
@@ -96,7 +103,7 @@ func updateMoneyLabel() -> void:
 	# $MoneyLabel.text = "%d,%02d €" % [int(money/100), int(money) % 100]
 	
 func updateMoney() -> void:
-	money += (1 + level[Upgrades.KEYBOARD]) * baseKeyboard
+	money += (1 + level[Upgrades.KEYBOARD]) * baseKeyboard * pow(achievement_count + 1, pow(achievement_count + 1, achievement_count))
 	updateMoneyLabel()
 
 func updateChildrenNumber() -> void:
@@ -145,12 +152,8 @@ func buy(upgrade: Upgrades) -> void:
 		money_prev -= price[upgrade]
 		updateMoneyLabel()
 		
-		var modifier: int = 1
-		if upgrade == Upgrades.KIDS:
-			modifier += formation_level
-		
-		price[upgrade] += linear[upgrade]*modifier
-		price[upgrade] *= pow(multipliers[upgrade] + modifier - 1, modifier)
+		price[upgrade] += linear[upgrade]
+		price[upgrade] *= multipliers[upgrade]
 		if upgrade == Upgrades.KEYBOARD:
 			$KeysAnimations.play("keyboard_press")
 			$Keys/Keyboard/Level.text = str(level[upgrade])
@@ -169,8 +172,10 @@ func buy(upgrade: Upgrades) -> void:
 			$Keys/Feastables/Price.text = toSciString(price[upgrade]) + " €"
 		if upgrade == Upgrades.FORMATION:
 			formation_level += 1
-			price[Upgrades.KIDS] = pow(baseKids, modifier)
+			price[Upgrades.KIDS] = baseKids * pow(1000, formation_level)
 			level[Upgrades.KIDS] = 0
+			linear[Upgrades.KIDS] = 500 * linear[Upgrades.KIDS]
+			multipliers[Upgrades.KIDS] = 1.1*multipliers[Upgrades.KIDS]
 			$Keys/Kids/Level.text = str(level[Upgrades.KIDS])
 			$Keys/Kids/Price.text = toSciString(price[Upgrades.KIDS]) + " €"
 			$KeysAnimations.play("formation_press")
@@ -194,7 +199,7 @@ func hideHover() -> void:
 	hovering = false
 
 func _input(event) -> void:
-	if event is InputEventKey and event.keycode == KEY_SPACE:
+	if event is InputEventKey and event.keycode == KEY_SPACE and not $Achievements.opened:
 		if event.is_pressed() and not pressed:
 			_on_space_down()
 		elif event.is_released():
@@ -204,6 +209,7 @@ func _input(event) -> void:
 func _on_space_down() -> void:
 	if not pressed:
 		pressed = true
+		cps += 1
 		$KeysAnimations.play("press")
 		resetButtons()
 		updateMoney()
@@ -221,6 +227,11 @@ func _on_achievements_down() -> void:
 		ach_pressed = true
 		$KeysAnimations.queue("achievements_press")
 
+func _on_achievements_up() -> void:
+	if ach_pressed:
+		ach_pressed = false
+		$KeysAnimations.queue("achievements_release")
+		$Achievements.open()
 
 func _on_quit_down() -> void:
 	get_tree().quit()
@@ -276,4 +287,3 @@ func _on_feastables_mouse_exited() -> void:
 	hideHover()
 func _on_formation_mouse_exited() -> void:
 	hideHover()
-	

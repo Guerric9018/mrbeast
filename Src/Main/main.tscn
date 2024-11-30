@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://bwww6v5uegutb"]
+[gd_scene load_steps=71 format=3 uid="uid://bwww6v5uegutb"]
 
 [ext_resource type="Texture2D" uid="uid://dxmuwh7b5dg4s" path="res://Res/Sprites/Main/space_normal.svg" id="1_d3sb5"]
 [ext_resource type="Script" path="res://Src/Main/main.gd" id="1_sr1r7"]
@@ -27,6 +27,12 @@
 [ext_resource type="Texture2D" uid="uid://fnm3x0lx4bp6" path="res://Res/Sprites/Main/formation_pressed.svg" id="22_ditmn"]
 [ext_resource type="Texture2D" uid="uid://cn0137m3hugrh" path="res://Res/Sprites/Main/formator_pressed.svg" id="23_coi3c"]
 [ext_resource type="Texture2D" uid="uid://bqykq7a8rlntm" path="res://Res/Sprites/Main/formator_normal.svg" id="24_48ebm"]
+[ext_resource type="Theme" uid="uid://ckn0unfuanbmt" path="res://Res/Styles/achievements.tres" id="28_qia3t"]
+[ext_resource type="Script" path="res://Src/Main/achievements.gd" id="29_fljyc"]
+[ext_resource type="Texture2D" uid="uid://bq3w2s1tcjepg" path="res://Res/Sprites/Main/question-mark.svg" id="29_nqc0d"]
+[ext_resource type="Theme" uid="uid://p6xvmdlnv2ie" path="res://Res/Styles/achievementPopup.tres" id="31_acvsq"]
+[ext_resource type="Texture2D" uid="uid://c2vwfg2ig38s2" path="res://Res/Sprites/Main/achievement.svg" id="32_jg744"]
+[ext_resource type="AudioStream" uid="uid://pxki16sfyvc0" path="res://Res/Audio/Main/achievement.mp3" id="33_1i2yl"]
 
 [sub_resource type="Curve" id="Curve_5e1v3"]
 _data = [Vector2(0.0243161, 0.996634), 0.0, 0.0, 0, 0, Vector2(0.966565, 0.0743139), -0.0527364, 0.0, 0, 0]
@@ -1640,6 +1646,161 @@ _data = {
 "release": SubResource("Animation_8jdlm")
 }
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_agavo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fpnyy"]
+
+[sub_resource type="Animation" id="Animation_sx0wh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(412, 1207)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MouseInhibitor:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_md1sq"]
+resource_name = "close"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1.23114, 0.683019),
+"update": 0,
+"values": [Vector2(412, 307), Vector2(412, 1207)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MouseInhibitor:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_76spo"]
+resource_name = "open"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.683019, 0.392292),
+"update": 0,
+"values": [Vector2(412, 1207), Vector2(412, 307)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MouseInhibitor:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d4nb1"]
+_data = {
+"RESET": SubResource("Animation_sx0wh"),
+"close": SubResource("Animation_md1sq"),
+"open": SubResource("Animation_76spo")
+}
+
+[sub_resource type="Animation" id="Animation_ots6e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1974, 18)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AchievementPopupSound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_atu0j"]
+resource_name = "show"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 4.5, 5),
+"transitions": PackedFloat32Array(0.659754, 1.41421, 0.353554, 1),
+"update": 0,
+"values": [Vector2(1974, 18), Vector2(1500, 18), Vector2(1500.01, 18), Vector2(1974, 18)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AchievementPopupSound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x56d2"]
+_data = {
+"RESET": SubResource("Animation_ots6e"),
+"show": SubResource("Animation_atu0j")
+}
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_sr1r7")
 metadata/_edit_horizontal_guides_ = [-502.0]
@@ -1979,6 +2140,348 @@ text = "This is
 an
 example"
 
+[node name="Achievements" type="Panel" parent="."]
+offset_left = 412.0
+offset_top = 1207.0
+offset_right = 1520.0
+offset_bottom = 1931.0
+theme = ExtResource("28_qia3t")
+script = ExtResource("29_fljyc")
+
+[node name="MouseInhibitor" type="TextureButton" parent="Achievements"]
+visible = false
+layout_mode = 0
+offset_left = -480.0
+offset_top = -376.0
+offset_right = 1584.0
+offset_bottom = 864.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Achievements"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("28_qia3t")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Achievements/MarginContainer"]
+custom_minimum_size = Vector2(1035, 0)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Achievements/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Count" type="Label" parent="Achievements/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("28_qia3t")
+text = "0/5"
+
+[node name="VSeparator" type="VSeparator" parent="Achievements/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 345
+theme_override_styles/separator = SubResource("StyleBoxEmpty_agavo")
+
+[node name="Name" type="Label" parent="Achievements/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("28_qia3t")
+text = "Succès"
+horizontal_alignment = 1
+
+[node name="VSeparator2" type="VSeparator" parent="Achievements/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 345
+theme_override_styles/separator = SubResource("StyleBoxEmpty_agavo")
+
+[node name="Quit" type="Button" parent="Achievements/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("28_qia3t")
+text = "×"
+
+[node name="HSeparator" type="HSeparator" parent="Achievements/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+theme_override_styles/separator = SubResource("StyleBoxEmpty_fpnyy")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Achievements/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 535)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Achievements/MarginContainer/VBoxContainer/ScrollContainer"]
+custom_minimum_size = Vector2(1030, 0)
+layout_mode = 2
+
+[node name="SpamClick" type="Panel" parent="Achievements/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 175)
+layout_mode = 2
+theme = ExtResource("28_qia3t")
+
+[node name="MarginContainer" type="MarginContainer" parent="Achievements/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/SpamClick"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 35
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Achievements/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/SpamClick/MarginContainer"]
+layout_mode = 2
+
+[node name="Logo" type="TextureRect" parent="Achievements/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/SpamClick/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+texture = ExtResource("29_nqc0d")
+expand_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="Achievements/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/SpamClick/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("28_qia3t")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Achievements/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/SpamClick/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Achievements/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/SpamClick/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("28_qia3t")
+theme_override_font_sizes/font_size = 45
+text = "?????"
+
+[node name="Description" type="RichTextLabel" parent="Achievements/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/SpamClick/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(775, 75)
+layout_mode = 2
+theme = ExtResource("28_qia3t")
+text = "Un peu mou du poignet à ce que je vois..."
+
+[node name="Money" type="Panel" parent="Achievements/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 175)
+layout_mode = 2
+theme = ExtResource("28_qia3t")
+
+[node name="MarginContainer" type="MarginContainer" parent="Achievements/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Money"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 35
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Achievements/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Money/MarginContainer"]
+layout_mode = 2
+
+[node name="Logo" type="TextureRect" parent="Achievements/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Money/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+texture = ExtResource("29_nqc0d")
+expand_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="Achievements/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Money/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("28_qia3t")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Achievements/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Money/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Achievements/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Money/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("28_qia3t")
+theme_override_font_sizes/font_size = 45
+text = "?????"
+
+[node name="Description" type="RichTextLabel" parent="Achievements/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Money/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(775, 75)
+layout_mode = 2
+theme = ExtResource("28_qia3t")
+text = "Accrochez vous et vous y arriverez :)"
+
+[node name="Kids" type="Panel" parent="Achievements/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 175)
+layout_mode = 2
+theme = ExtResource("28_qia3t")
+
+[node name="MarginContainer" type="MarginContainer" parent="Achievements/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Kids"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 35
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Achievements/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Kids/MarginContainer"]
+layout_mode = 2
+
+[node name="Logo" type="TextureRect" parent="Achievements/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Kids/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+texture = ExtResource("29_nqc0d")
+expand_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="Achievements/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Kids/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("28_qia3t")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Achievements/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Kids/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Achievements/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Kids/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("28_qia3t")
+theme_override_font_sizes/font_size = 45
+text = "?????"
+
+[node name="Description" type="RichTextLabel" parent="Achievements/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Kids/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(775, 75)
+layout_mode = 2
+theme = ExtResource("28_qia3t")
+text = "Il y a des limites à l'éthique 😬"
+
+[node name="Feastables" type="Panel" parent="Achievements/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 175)
+layout_mode = 2
+theme = ExtResource("28_qia3t")
+
+[node name="MarginContainer" type="MarginContainer" parent="Achievements/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Feastables"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 35
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Achievements/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Feastables/MarginContainer"]
+layout_mode = 2
+
+[node name="Logo" type="TextureRect" parent="Achievements/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Feastables/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+texture = ExtResource("29_nqc0d")
+expand_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="Achievements/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Feastables/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("28_qia3t")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Achievements/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Feastables/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Achievements/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Feastables/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("28_qia3t")
+theme_override_font_sizes/font_size = 45
+text = "?????"
+
+[node name="Description" type="RichTextLabel" parent="Achievements/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Feastables/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(775, 75)
+layout_mode = 2
+theme = ExtResource("28_qia3t")
+text = "MrBeast vous a rendu riche, soyez reconnaissant !
+(Quitte à avoir une équipe de diabétiques)"
+
+[node name="Formations" type="Panel" parent="Achievements/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 175)
+layout_mode = 2
+theme = ExtResource("28_qia3t")
+
+[node name="MarginContainer" type="MarginContainer" parent="Achievements/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Formations"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 35
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Achievements/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Formations/MarginContainer"]
+layout_mode = 2
+
+[node name="Logo" type="TextureRect" parent="Achievements/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Formations/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+texture = ExtResource("29_nqc0d")
+expand_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="Achievements/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Formations/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("28_qia3t")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Achievements/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Formations/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Achievements/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Formations/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("28_qia3t")
+theme_override_font_sizes/font_size = 45
+text = "?????"
+
+[node name="Description" type="RichTextLabel" parent="Achievements/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Formations/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(775, 75)
+layout_mode = 2
+theme = ExtResource("28_qia3t")
+text = "Toujours à cliquer sur les boutons ? Délègue ton travail et ça avancera tout seul !"
+
+[node name="AchievementsAnimations" type="AnimationPlayer" parent="Achievements"]
+libraries = {
+"": SubResource("AnimationLibrary_d4nb1")
+}
+
+[node name="AchievementPopup" type="Panel" parent="."]
+offset_left = 1974.0
+offset_top = 18.0
+offset_right = 2334.0
+offset_bottom = 160.0
+theme = ExtResource("31_acvsq")
+
+[node name="MarginContainer" type="MarginContainer" parent="AchievementPopup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("31_acvsq")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="AchievementPopup/MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="AchievementPopup/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("32_jg744")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="AchievementPopup/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("31_acvsq")
+text = "NOUVEAU SUCCÈS
+OBTENU"
+horizontal_alignment = 1
+
+[node name="AchievementPopupAnimations" type="AnimationPlayer" parent="AchievementPopup"]
+libraries = {
+"": SubResource("AnimationLibrary_x56d2")
+}
+
+[node name="AchievementPopupSound" type="AudioStreamPlayer2D" parent="AchievementPopup"]
+stream = ExtResource("33_1i2yl")
+
 [connection signal="button_down" from="Keys/Keyboard" to="." method="_on_keyboard_down"]
 [connection signal="button_up" from="Keys/Keyboard" to="." method="_on_keyboard_up"]
 [connection signal="mouse_entered" from="Keys/Keyboard" to="." method="_on_keyboard_mouse_entered"]
@@ -1999,5 +2502,7 @@ example"
 [connection signal="mouse_exited" from="Keys/Formation" to="." method="_on_formation_mouse_exited"]
 [connection signal="button_down" from="Keys/Quit" to="." method="_on_quit_down"]
 [connection signal="button_down" from="Keys/Achievements" to="." method="_on_achievements_down"]
+[connection signal="button_up" from="Keys/Achievements" to="." method="_on_achievements_up"]
 [connection signal="button_down" from="Button" to="." method="_on_space_down"]
 [connection signal="button_up" from="Button" to="." method="_on_space_up"]
+[connection signal="pressed" from="Achievements/MarginContainer/VBoxContainer/HBoxContainer/Quit" to="Achievements" method="_on_quit_pressed"]

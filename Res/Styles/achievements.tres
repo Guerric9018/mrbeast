@@ -1,0 +1,32 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://ckn0unfuanbmt"]
+
+[ext_resource type="FontFile" uid="uid://uf3dre3k368u" path="res://Res/Fonts/Roboto/Roboto-Bold.ttf" id="1_7b4gb"]
+[ext_resource type="FontFile" uid="uid://bfvhhxumc2osr" path="res://Res/Fonts/Roboto/Roboto-Black.ttf" id="2_7dyrc"]
+[ext_resource type="FontFile" uid="uid://b2mgjiaob5e4o" path="res://Res/Fonts/Roboto/Roboto-Medium.ttf" id="3_fkd4d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h16to"]
+bg_color = Color(0.118581, 0.118581, 0.118581, 0.870588)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 45
+corner_radius_top_right = 45
+corner_radius_bottom_right = 45
+corner_radius_bottom_left = 45
+
+[resource]
+Button/font_sizes/font_size = 60
+Button/fonts/font = ExtResource("1_7b4gb")
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/font_sizes/font_size = 55
+Label/fonts/font = ExtResource("2_7dyrc")
+MarginContainer/constants/margin_bottom = 35
+MarginContainer/constants/margin_left = 35
+MarginContainer/constants/margin_right = 35
+MarginContainer/constants/margin_top = 35
+Panel/styles/panel = SubResource("StyleBoxFlat_h16to")
+RichTextLabel/colors/default_color = Color(1, 1, 1, 1)
+RichTextLabel/font_sizes/normal_font_size = 30
+RichTextLabel/fonts/normal_font = ExtResource("3_fkd4d")
+VSeparator/constants/separation = 50
